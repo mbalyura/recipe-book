@@ -1,11 +1,11 @@
-<app-header></app-header>
+<app-header (moduleChanged)="activeModule = $event"></app-header>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <h2>Hello!</h2>
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+      <app-recipes *ngIf="activeModule === 'recipes'"></app-recipes>
+      <app-shopping-list *ngIf="activeModule === 'list'"></app-shopping-list>
     </div>
   </div>
 </div>
