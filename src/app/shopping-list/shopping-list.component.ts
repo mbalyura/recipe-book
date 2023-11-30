@@ -11,4 +11,8 @@ export class ShoppingListComponent {
     new Ingridient('Apples', 5),
     new Ingridient('Oranges', 10),
   ];
+
+  addIngridient(ingridient: Ingridient) {
+    this.ingridients.push(ingridient)
+  }
 }
