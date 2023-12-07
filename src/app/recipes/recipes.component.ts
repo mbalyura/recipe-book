@@ -9,13 +9,9 @@ import { RecipeService } from '../services/recipe.service';
   providers: [RecipeService],
 })
 export class RecipesComponent implements OnInit {
-  activeRecipe: Recipe;
-
   constructor(private recipeServise: RecipeService) {}
 
   ngOnInit(): void {
-      this.recipeServise.recipeSelected.subscribe((recipe: Recipe) => {
-        this.activeRecipe = recipe;
-      })
+
   }
 }

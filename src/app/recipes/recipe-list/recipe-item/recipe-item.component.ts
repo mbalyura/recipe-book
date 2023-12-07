@@ -12,7 +12,4 @@ export class RecipeItemComponent {
 
   constructor(private recipeService: RecipeService) {}
 
-  setActiveRecipe() {
-    this.recipeService.recipeSelected.emit(this.recipe);
-  }
 }

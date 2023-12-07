@@ -4,31 +4,41 @@ import { Ingridient } from "../models/ingridient.model";
 
 @Injectable()
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
+  id: number = 1;
 
   private recipes: Recipe[] = [
     new Recipe(
+      this.id++,
       'Schnitzel',
       'Super tasty',
-      'https://www.howtocook.recipes/wp-content/uploads/2021/05/Ratatouille-recipe.jpg',
+      'https://www.daskochrezept.de/sites/daskochrezept.de/files/styles/full_width_tablet_4_3/public/2021-07/schnitzel_mit_pommes_1.jpg?h=30716e04&itok=Q-4VpPLN',
       [
         new Ingridient('Meat', 1),
         new Ingridient('French fries', 20),
       ]
-      ),
-      new Recipe(
-        'Burger',
-        'Big fat burger',
-        'https://www.howtocook.recipes/wp-content/uploads/2021/05/Ratatouille-recipe.jpg',
-        [
-          new Ingridient('Buns', 2),
-          new Ingridient('Meat', 1),
-        ]
-      ),
-    ];
+    ),
+    new Recipe(
+      this.id++,
+      'Burger',
+      'Big fat burger',
+      'https://www.shutterstock.com/image-photo/classic-hamburger-stock-photo-isolated-600nw-2282033179.jpg',
+      [
+        new Ingridient('Buns', 2),
+        new Ingridient('Meat', 1),
+      ]
+    ),
+  ];
+
+  getRecipe(id: number) {
+    return this.recipes.find(recipe => recipe.id === id);
+  }
 
   getRecipes() {
     // return [...this.recipes];
     return this.recipes;
+  }
+
+  getNewId() {
+    return this.id++;
   }
 }
