@@ -28,7 +28,12 @@ export class RecipeDetailComponent {
   }
 
   onEdit() {
-    this.router.navigate(['edit'], { relativeTo: this.route, queryParamsHandling: 'preserve' })
+    this.router.navigate(['edit'], { relativeTo: this.route })
+  }
+
+  onDelete() {
+    this.recipeService.deleteRecipe(this.activeRecipe.id);
+    this.router.navigate(['../..'], { relativeTo: this.route })
   }
 
   addToShoppingList() {

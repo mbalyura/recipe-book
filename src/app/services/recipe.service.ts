@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Recipe } from 'src/app/models/recipe.model';
 import { Ingridient } from "../models/ingridient.model";
+import { findIndex } from "rxjs";
 
 @Injectable()
 export class RecipeService {
@@ -40,5 +41,19 @@ export class RecipeService {
 
   getNewId() {
     return this.id++;
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+  }
+
+  deleteRecipe(id: number) {
+    const index = this.recipes.findIndex((recipe: Recipe) => recipe.id === id);
+    this.recipes.splice(index, 1);
+  }
+
+  updateRecipe(id: number, newRecipe: Recipe) {
+    const index = this.recipes.findIndex((recipe: Recipe) => recipe.id === id);
+    this.recipes[index] = newRecipe;
   }
 }
