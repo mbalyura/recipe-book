@@ -22,6 +22,8 @@ import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './directives/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     RecipeEditComponent,
     AuthComponent,
     SpinnerComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
