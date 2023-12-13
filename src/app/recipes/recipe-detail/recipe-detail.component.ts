@@ -12,6 +12,7 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
 })
 export class RecipeDetailComponent {
   activeRecipe: Recipe;
+  activeRecipeId: number;
 
   constructor(
     private shoppingListService: ShoppingListService,
@@ -23,6 +24,7 @@ export class RecipeDetailComponent {
   ngOnInit() {
     this.activeRecipe = this.recipeService.getRecipe(+this.route.snapshot.params.id);
     this.route.params.subscribe((params: Params) => {
+      this.activeRecipeId = +params.id;
       this.activeRecipe = this.recipeService.getRecipe(+params.id);
     })
   }
@@ -32,7 +34,7 @@ export class RecipeDetailComponent {
   }
 
   onDelete() {
-    this.recipeService.deleteRecipe(this.activeRecipe.id);
+    this.recipeService.deleteRecipe(this.activeRecipeId);
     this.router.navigate(['../..'], { relativeTo: this.route })
   }
 
