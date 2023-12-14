@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, catchError, tap, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 export interface AuthResponseData {
   kind: string;
@@ -18,9 +19,9 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  signupUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-  loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
-  apiKey = 'AIzaSyDuAfH7kVRyjQOEXtsvls88NALTOnK3CbY';
+  signupUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp';
+  loginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword'
+  apiKey = environment.firabaseApiKey;
 
   user = new BehaviorSubject<User>(null);
 
@@ -30,7 +31,7 @@ export class AuthService {
 
   signup(email: string, password: string) {
     return this.http
-      .post<AuthResponseData>(`${this.signupUrl}${this.apiKey}`, {
+      .post<AuthResponseData>(`${this.signupUrl}/?key=${this.apiKey}`, {
         email,
         password,
         returnSecureToken: true,
@@ -43,7 +44,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<AuthResponseData>(`${this.loginUrl}${this.apiKey}`, {
+      .post<AuthResponseData>(`${this.loginUrl}/?key=${this.apiKey}`, {
         email,
         password,
         returnSecureToken: true,
